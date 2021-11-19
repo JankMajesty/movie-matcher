@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
+import { Navigate } from 'react-router'
 import {
   TextField,
   Button,
@@ -26,7 +26,7 @@ class App extends Component {
 
   render() {
     if (this.state.redirectHome) {
-      return <Redirect to="/" />;
+      return <Navigate to="/" />;
     }
     return (
       <div className="App">

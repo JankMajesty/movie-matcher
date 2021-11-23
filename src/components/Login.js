@@ -21,7 +21,7 @@ class App extends Component {
   login = (e) => {
     e.preventDefault()
     document.cookie = "loggedIn=true"
-    window.location.replace("/")
+    // window.location.replace("/")
   }
 
   render() {

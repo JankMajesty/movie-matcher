@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router'
 import cookie from 'cookie'
 import Login from './containers/Login'
 import Home from './components/Home'
-
+import SignUp from './containers/SignUp'
 
 
 
@@ -29,6 +29,7 @@ const Router = () => {
         <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/signup" element={<SignUp/>} />
         </Routes>
     );
 };

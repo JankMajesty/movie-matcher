@@ -26,11 +26,14 @@ const Navigation = () => {
         <AppBar position="relative" style={{ background: '#3EB371' }}>
             <Toolbar>
                 <Typography variant="h6" style={{ flexGrow: "1" }}>
-                    Movie Matcher
+                <Link to="/"> Movie Matcher </Link>
                 </Typography>
                 <ul className="nav-list">
                     <li className="nav-list-item">
                     <Link to ="/login">Login</Link>
+                    </li>
+                    <li>
+                    <Link to ="/signup">Sign Up</Link>
                     </li>
                 </ul>
             </Toolbar>

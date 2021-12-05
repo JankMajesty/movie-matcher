@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Toolbar, IconButton, 
+import { AppBar, Toolbar,
     Typography } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { checkAuth } from '../Router';
@@ -29,7 +29,7 @@ const Navigation = () => {
         <AppBar position="relative" style={{ background: '#E50914' }}>
             <Toolbar>
                 <Typography variant="h6" style={{ flexGrow: "1" }}>
-                <Link to="/"> Movie Matcher </Link>
+                <Link to="/"> Movie List </Link>
                 </Typography>
                 <ul className="nav-list">
                     <li className="nav-list-item">

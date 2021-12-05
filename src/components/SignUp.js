@@ -1,78 +1,84 @@
-import React, { useState } from 'react'
-import { Navigate } from 'react-router'
-import Axios from 'axios'
-import {
-  TextField,
-  Button,
-  Container
-} from '@material-ui/core'
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 
-// class App extends Component {
-//   state = {
-//     username: '',
-//     password: '',
-//   }
+const theme = createTheme();
 
-function App(){
-
-  const [usernameReg, setUsernameReg] = useState('');
-  const [passwordReg, setPasswordReg] = useState('');
-   
-  const register = () => {
-    Axios.post('movie-matcher.c9gwbpwa0mbv.us-east-2.rds.amazonaws.com/signup', {
-      username: usernameReg, 
-      password: passwordReg
-    }).then((response) =>{
-      console.log(response);
+export default function SignUp() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // eslint-disable-next-line no-console
+    console.log({
+      username: data.get('username'),
+      password: data.get('password'),
     });
-  }
-  // handleTextChange = (e) => {
-  //   const state = { ...this.state }
-  //   state[e.target.name] = e.target.value
-  //   this.setState(state)
-  // }
-  
-  // signup = (e) => {
-  //   e.preventDefault()
-  //   document.cookie = "loggedIn=true"
-  //   window.location.replace("/")
-  // }
-  
-  // render() {
-    //   if (this.state.redirectHome) {
-      //     return <Navigate to="/" />;
-      // }
-      return (
-        <div className="App">
-        <Container maxWidth="sm">
-          <form className="container">
+    axios.post('https://moviematcherapi.herokuapp.com/users', 
+      {
+        username: data.get('username'),
+        password: data.get('password'),
+      }
+    )
+    .then( res => {
+      window.location.replace("/login")
+      //TO-DO: user inserted into table, but need to handle response
+      console.log(res)
+    })
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Sign Up
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
+              margin="normal"
               required
-              onChange={(e)=> {
-                setUsernameReg(e.target.value);
-              }}
+              fullWidth
+              id="username"
+              label="username"
               name="username"
-              label="Username"
-              type="text" />
+              autoComplete="username"
+              autoFocus
+            />
             <TextField
+              margin="normal"
               required
-              onChange={(e)=> {
-                setPasswordReg(e.target.value);
-              }}
+              fullWidth
               name="password"
               label="Password"
-              type="password" />
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
             <Button
-              onClick={register}
               type="submit"
-              className="login-button"
+              fullWidth
               variant="contained"
-              color="primary">Sign Up</Button>
-          </form>
-        </Container>
-      </div>
-    );
-  }
-
-
-export default App;
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign up
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
+}

@@ -1,61 +1,88 @@
-import React, { Component } from 'react'
-import { Navigate } from 'react-router'
-import {
-  TextField,
-  Button,
-  Container
-} from '@material-ui/core'
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 
-class App extends Component {
-  state = {
-    username: '',
-    password: '',
-  }
+const theme = createTheme();
 
-  handleTextChange = (e) => {
-    const state = { ...this.state }
-    state[e.target.name] = e.target.value
-    this.setState(state)
-  }
+export default function Login() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // eslint-disable-next-line no-console
+    console.log({
+      username: data.get('username'),
+      password: data.get('password'),
+    });
+    axios.post('https://moviematcherapi.herokuapp.com/users/login', 
+      {
+        username: data.get('username'),
+        password: data.get('password'),
+      }
+    )
+    .then( res => {
+      console.log(res)
+      document.cookie = "loggedIn=true"
+      document.cookie = `username=${data.get('username')}`
+      window.location.replace("/")
+    })
+    .catch( err => {
+      console.log(err)
+    })
+  };
 
-  login = (e) => {
-    e.preventDefault()
-    document.cookie = "loggedIn=true"
-    // window.location.replace("/")
-  }
-
-  render() {
-    if (this.state.redirectHome) {
-      return <Navigate to="/" />;
-    }
-    return (
-      <div className="App">
-        <Container maxWidth="sm">
-          <form className="container" onSubmit={this.login}>
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Log in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
+              margin="normal"
               required
-              onChange={this.handleTextChange}
-              value={this.state.username}
+              fullWidth
+              id="username"
+              label="username"
               name="username"
-              label="Username"
-              type="text" />
+              autoComplete="username"
+              autoFocus
+            />
             <TextField
+              margin="normal"
               required
-              onChange={this.handleTextChange}
-              value={this.state.password}
+              fullWidth
               name="password"
               label="Password"
-              type="password" />
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
             <Button
               type="submit"
-              className="login-button"
+              fullWidth
               variant="contained"
-              color="primary">Login</Button>
-          </form>
-        </Container>
-      </div>
-    );
-  }
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Log in
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
 }
-
-export default App;

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router'
 import cookie from 'cookie'
-import Login from './containers/Login'
+import Login from './components/Login'
 import Home from './components/Home'
-import SignUp from './containers/SignUp'
-
+import SignUp from './components/SignUp'
+import Favorites from './components/Favorites'
 
 
 export const checkAuth = () => {
@@ -30,6 +30,7 @@ const Router = () => {
             <Route path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/signup" element={<SignUp/>} />
+            <Route path="/favorites" element={<Favorites/>} />
         </Routes>
     );
 };

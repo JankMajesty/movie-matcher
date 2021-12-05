@@ -5,11 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-
-import axios from 'axios';
-
-
- class MovieCard extends React.Component {
+class MovieCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

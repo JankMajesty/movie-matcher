@@ -28,6 +28,12 @@ class MovieCard extends React.Component {
         alt={this.props.movie.Title}
       />
       </div>
+      <Typography variant="h5" component="div">
+          {this.props.movie.Year}
+        </Typography>
+        <Typography variant="h5" component="div">
+          {this.props.movie.Plot}
+        </Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Favorite</Button>

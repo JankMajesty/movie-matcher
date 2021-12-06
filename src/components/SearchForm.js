@@ -7,7 +7,7 @@ const checkAuth = () => {
     return cookies["loggedIn"] ? true : false;
   };
 
-const Home = () => {
+const SearchForm = () => {
     if (!checkAuth()) {
         window.location.replace("/login")
     }
@@ -19,4 +19,4 @@ const Home = () => {
     );
 }
 
-export default Home
+export default SearchForm

@@ -9,18 +9,15 @@ const Navigation = () => {
         <AppBar position="relative" style={{ background: '#E50914' }}>
             <Toolbar>
                 <Typography variant="h6" style={{ flexGrow: "1" }}>
-                   <Link to="/"> Movie List </Link>
+                   <Link to="/search"> Movie List </Link>
                 </Typography>
                 <ul className="nav-list">
                     <li className="nav-list-item"
                         onClick={() => {
                             document.cookie = "loggedIn="
-                            window.location.replace("/login")
+                            window.location.replace("/search")
                         }}>
                       <Link to ="/login">Logout</Link>
-                    </li>
-                    <li>
-                        <Link to ="/favorites">Favorites</Link>
                     </li>
                 </ul>
             </Toolbar>
@@ -29,14 +26,14 @@ const Navigation = () => {
         <AppBar position="relative" style={{ background: '#E50914' }}>
             <Toolbar>
                 <Typography variant="h6" style={{ flexGrow: "1" }}>
-                <Link to="/"> Movie List </Link>
+                <Link to="/search"> Movie List </Link>
                 </Typography>
                 <ul className="nav-list">
                     <li className="nav-list-item">
                     <Link to ="/login">Login</Link>
                     </li>
                     <li>
-                    <Link to ="/signup">Sign Up</Link>
+                    <Link to ="/">Sign Up</Link>
                     </li>
                 </ul>
             </Toolbar>

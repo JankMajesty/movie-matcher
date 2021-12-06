@@ -29,7 +29,7 @@ export default function Login() {
       console.log(res)
       document.cookie = "loggedIn=true"
       document.cookie = `username=${data.get('username')}`
-      window.location.replace("/")
+      window.location.replace("/search")
     })
     .catch( err => {
       console.log(err)

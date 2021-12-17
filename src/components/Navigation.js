@@ -26,7 +26,7 @@ const Navigation = () => {
         <AppBar position="relative" style={{ background: '#E50914' }}>
             <Toolbar>
                 <Typography variant="h6" style={{ flexGrow: "1" }}>
-                <Link to="/search"> Movie List </Link>
+                Movie List 
                 </Typography>
                 <ul className="nav-list">
                     <li className="nav-list-item">
